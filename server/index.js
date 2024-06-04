@@ -70,11 +70,5 @@ io.on('connection', (socket) => {
   });
 });
 
-app.use(
-  cors({
-    origin: ['http:localhost:3000', 'http://119.200.31.88'],
-    credentials: true,
-  })
-);
 app.use(router);
 server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));

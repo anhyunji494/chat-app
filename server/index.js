@@ -11,7 +11,7 @@ const io = require('socket.io')(server, {
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js');
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 80;
 
 const router = require('./router');
 
@@ -70,5 +70,11 @@ io.on('connection', (socket) => {
   });
 });
 
+app.use(
+  cors({
+    origin: ['http:localhost:3000', 'http://119.200.31.88'],
+    credentials: true,
+  })
+);
 app.use(router);
 server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));

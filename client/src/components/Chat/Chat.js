@@ -8,7 +8,7 @@ import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input.js';
 import Messages from '../Messages/Messages.js';
 
-const ENDPOINT = 'http://13.125.239.48:3000/';
+const ENDPOINT = 'http://13.125.239.48:4000';
 const socket = io(ENDPOINT);
 
 const Chat = () => {
@@ -45,6 +45,7 @@ const Chat = () => {
 
   const sendMessage = (event) => {
     event.preventDefault();
+    console.log('Sending message:', message);
     if (message) {
       socket.emit('sendMessage', message, () => setMessage(''));
     }

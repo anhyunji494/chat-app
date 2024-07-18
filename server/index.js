@@ -4,8 +4,8 @@ const app = express();
 const server = http.createServer(app);
 const io = require('socket.io')(server, {
   cors: {
-    origin: 'http://localhost:4000',
-    method: ['GET', 'POST'],
+    origin: '*', // 모든 출처 허용. 보안상 주의가 필요하며, 프로덕션에서는 특정 도메인으로 제한하는 것이 좋습니다.
+    methods: ['GET', 'POST'],
   },
 });
 
@@ -13,7 +13,9 @@ const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js');
 
 const PORT = process.env.PORT || 4000;
 
+// 라우터 설정
 const router = require('./router');
+app.use(router);
 
 io.on('connection', (socket) => {
   console.log('We have a new connection!');
@@ -30,7 +32,6 @@ io.on('connection', (socket) => {
 
     socket.broadcast.to(user.room).emit('message', {
       user: 'admin',
-      text: `${user.name}, has joind!`,
     });
 
     socket.join(user.room);
@@ -58,6 +59,7 @@ io.on('connection', (socket) => {
 
     callback();
   });
+
   socket.on('disconnect', () => {
     const user = removeUser(socket.id);
 
@@ -66,9 +68,15 @@ io.on('connection', (socket) => {
         user: 'admin',
         text: `${user.name} has left.`,
       });
+      io.to(user.room).emit('roomData', {
+        room: user.room,
+        users: getUsersInRoom(user.room),
+      });
     }
   });
 });
 
-app.use(router);
-server.listen(PORT, () => console.log(`Server has started on port ${PORT}`));
+// 서버 시작. '0.0.0.0'으로 바인딩
+server.listen(PORT, '0.0.0.0', () =>
+  console.log(`Server has started on port ${PORT}`)
+);

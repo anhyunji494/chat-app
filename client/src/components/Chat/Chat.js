@@ -8,7 +8,7 @@ import InfoBar from '../InfoBar/InfoBar';
 import Input from '../Input/Input.js';
 import Messages from '../Messages/Messages.js';
 
-const ENDPOINT = 'localhost:5000';
+const ENDPOINT = 'http://13.125.239.48:3000/';
 const socket = io(ENDPOINT);
 
 const Chat = () => {

@@ -12,7 +12,8 @@ const io = require('socket.io')(server, {
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js');
 
 const PORT = process.env.PORT || 4000;
-
+const cors = require('cors');
+app.use(cors());
 // 라우터 설정
 const router = require('./router');
 app.use(router);

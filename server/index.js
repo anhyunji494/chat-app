@@ -4,14 +4,14 @@ const app = express();
 const server = http.createServer(app);
 const io = require('socket.io')(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:4000',
     method: ['GET', 'POST'],
   },
 });
 
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./users.js');
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 4000;
 
 const router = require('./router');
 

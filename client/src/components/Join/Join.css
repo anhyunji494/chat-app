@@ -19,7 +19,7 @@ body {
   text-align: center;
   height: 100vh;
   align-items: center;
-  background-color: #1a1a1d;
+  background-color: #727272;
 }
 
 .joinInnerContainer {
@@ -30,20 +30,22 @@ body {
   border-radius: 0;
   padding: 15px 20px;
   width: 100%;
+  outline: none;
+  border: none;
 }
 
 .heading {
-  color: white;
+  color: #ffffff;
   font-size: 2.5em;
   padding-bottom: 10px;
   border-bottom: 2px solid white;
 }
 
 .button {
-  color: #fff !important;
+  color: #ffffff !important;
   text-transform: uppercase;
   text-decoration: none;
-  background: #2979ff;
+  background: #c39898;
   padding: 20px;
   border-radius: 5px;
   display: inline-block;

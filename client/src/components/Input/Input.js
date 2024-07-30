@@ -12,7 +12,7 @@ const Input = ({ message, setMessage, sendMessage }) => {
       <input
         className="input"
         type="text"
-        placeholder="Type a message..."
+        placeholder="메세지를 작성하세요..."
         value={message}
         onChange={(event) => setMessage(event.target.value)}
         onKeyPress={(event) =>
@@ -20,7 +20,7 @@ const Input = ({ message, setMessage, sendMessage }) => {
         }
       />
       <button className="sendButton" type="submit" onClick={handleSubmit}>
-        Send
+        전송
       </button>
     </form>
   );

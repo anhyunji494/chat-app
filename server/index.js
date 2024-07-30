@@ -4,7 +4,7 @@ const app = express();
 const server = http.createServer(app);
 const io = require('socket.io')(server, {
   cors: {
-    origin: '*', // 모든 출처 허용. 보안상 주의가 필요하며, 프로덕션에서는 특정 도메인으로 제한하는 것이 좋습니다.
+    origin: '*', // 모든 출처 허용. 보안상 주의가 필요하며, 프로덕션에서는 특정 도메인으로 제한하는 것이 좋음.
     methods: ['GET', 'POST'],
   },
 });
@@ -26,12 +26,12 @@ io.on('connection', (socket) => {
     if (error) return callback(error);
 
     socket.emit('message', {
-      user: 'admin',
-      text: `${user.name}, welcome to the room ${user.room}`,
+      user: '관리자',
+      text: `${user.name} 님, '${user.room}' 채널에 오신 것을 환영합니다.`,
     });
 
     socket.broadcast.to(user.room).emit('message', {
-      user: 'admin',
+      user: '관리자',
     });
 
     socket.join(user.room);
@@ -54,7 +54,7 @@ io.on('connection', (socket) => {
       });
     } else {
       // 유효한 사용자가 없는 경우 처리
-      console.log('Invalid user');
+      console.log('유효하지 않은 사용자입니다.');
     }
 
     callback();
